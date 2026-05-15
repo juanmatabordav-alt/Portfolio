@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Manuel Taborda | Pop-Art Fusion Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Britto x Warhol Palette */
+            --bg-white: #ffffff;
+            --pop-cyan: #00e5ff;
+            --pop-magenta: #ff007f; 
+            --pop-yellow: #fff200;
+            --pop-green: #39ff14; 
+            --text-dark: #000000;
+            --border-thick: 6px solid var(--text-dark);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* Warhol Halftone Dots Pattern */
+            background-color: var(--bg-white);
+            background-image: radial-gradient(var(--text-dark) 2px, transparent 2px);
+            background-size: 20px 20px;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .britto-stripes {
+            background: repeating-linear-gradient(
+                45deg,
+                var(--text-dark),
+                var(--text-dark) 10px,
+                var(--pop-yellow) 10px,
+                var(--pop-yellow) 20px
+            );
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--bg-white);
+            border-bottom: var(--border-thick);
+            transition: 0.3s;
+        }
+
+        nav.scrolled {
+            background: var(--pop-magenta);
+            box-shadow: 0px 10px 0px var(--text-dark);
+        }
+
+        .logo { 
+            font-weight: 900; 
+            font-size: 2rem; 
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            color: var(--bg-white);
+            text-shadow: -2px -2px 0 var(--text-dark), 2px -2px 0 var(--text-dark), -2px 2px 0 var(--text-dark), 2px 2px 0 var(--text-dark), 6px 6px 0 var(--pop-cyan);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            background: var(--pop-yellow);
+            margin-left: 20px;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border: 3px solid var(--text-dark);
+            padding: 8px 15px;
+            transition: 0.2s;
+            box-shadow: 4px 4px 0px var(--text-dark);
+        }
+
+        .nav-links a:hover { 
+            background: var(--pop-cyan);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--text-dark);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pop-yellow) 50%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 1000px;
+            background: var(--bg-white);
+            padding: 80px 40px;
+            border: 8px solid var(--text-dark);
+            box-shadow: 20px 20px 0px var(--text-dark);
+        }
+
+        .hero-content span { 
+            background: var(--text-dark);
+            color: var(--pop-green);
+            padding: 5px 20px;
+            font-weight: 900; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 0.85;
+            margin: 20px 0 50px;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            color: var(--bg-white);
+            text-shadow: -3px -3px 0 var(--text-dark), 3px -3px 0 var(--text-dark), -3px 3px 0 var(--text-dark), 3px 3px 0 var(--text-dark), 8px 8px 0 var(--pop-magenta), 16px 16px 0 var(--pop-cyan);
+        }
+
+        .btn-legacy {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--pop-cyan);
+            border: var(--border-thick);
+            color: var(--text-dark);
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 10px 10px 0px var(--pop-magenta);
+            transition: 0.1s;
+        }
+
+        .btn-legacy:hover { 
+            background: var(--pop-yellow);
+            transform: translate(5px, 5px);
+            box-shadow: 5px 5px 0px var(--text-dark);
+        }
+
+        /* --- Sections --- */
+        section { padding: 140px 10%; max-width: 1600px; margin: 0 auto; }
+
+        h2.section-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 70px;
+            display: inline-block;
+            background: var(--pop-magenta);
+            color: var(--bg-white);
+            padding: 10px 25px;
+            border: var(--border-thick);
+            box-shadow: 12px 12px 0px var(--text-dark);
+            transform: rotate(-2deg);
+        }
+
+        /* --- About & Scale Section --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+        .about-text {
+            background: var(--bg-white);
+            padding: 50px;
+            border: var(--border-thick);
+            box-shadow: 15px 15px 0px var(--pop-cyan);
+        }
+
+        /* Scale / Personal Info Badge */
+        .personal-badge {
+            margin-bottom: 25px;
+            background: var(--pop-yellow);
+            padding: 15px;
+            border: 3px solid var(--text-dark);
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 5px 5px 0px var(--text-dark);
+        }
+
+        .personal-badge p { margin-bottom: 5px; font-size: 1rem; }
+        .personal-badge p:last-child { margin-bottom: 0; }
+
+        .about-text p.bio-text { font-size: 1.2rem; font-weight: 700; line-height: 1.6; margin-bottom: 20px; }
+
+        .frame-premium { 
+            border: 8px solid var(--text-dark); 
+            background: var(--pop-magenta); 
+            padding: 25px;
+            box-shadow: 20px 20px 0px var(--text-dark);
+            position: relative;
+        }
+
+        .frame-premium img { 
+            width: 100%; 
+            height: auto; 
+            display: block;
+            border: 6px solid var(--text-dark);
+            filter: grayscale(20%) contrast(1.6) saturate(1.8);
+            background: var(--pop-cyan);
+            transition: 0.4s;
+        }
+
+        /* --- Gallery --- */
+        .work-item { 
+            margin-bottom: 120px; 
+            background: var(--bg-white);
+            border: var(--border-thick);
+            box-shadow: 20px 20px 0px var(--text-dark);
+            position: relative;
+        }
+
+        .work-meta { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px;
+            border-bottom: var(--border-thick);
+            background: var(--pop-yellow);
+        }
+
+        .work-meta h4 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: var(--text-dark); }
+
+        .work-meta span { 
+            background: var(--bg-white); 
+            color: var(--text-dark); 
+            padding: 10px 20px;
+            font-weight: 900; 
+            letter-spacing: 2px; 
+            font-size: 0.9rem; 
+            border: 3px solid var(--text-dark);
+            box-shadow: 4px 4px 0px var(--pop-magenta);
+        }
+
+        /* Dynamic Image Wrapper */
+        .img-wrapper { 
+            width: 100%; 
+            position: relative;
+            background: var(--pop-cyan);
+            line-height: 0; 
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: auto; 
+            filter: contrast(1.4) saturate(2);
+            transition: 0.5s;
+            display: block;
+        }
+
+        .img-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--pop-magenta);
+            mix-blend-mode: color;
+            opacity: 0;
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .work-item:hover .img-wrapper::after { opacity: 0.6; }
+
+        /* Video Wrapper */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            background: var(--text-dark);
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .reveal { opacity: 0; transform: translateY(50px); transition: 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Footer --- */
+        footer { 
+            text-align: center; 
+            padding: 60px; 
+            background: var(--text-dark);
+            color: var(--pop-green); 
+            font-size: 1rem; 
+            font-weight: 900;
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            border-top: 15px solid var(--pop-magenta); 
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 3rem; }
+            .work-meta { flex-direction: column; align-items: flex-start; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">J.M.T.V</div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#about">Concept</a>
+            <a href="#work">Gallery</a>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="hero-content">
+            <span>Artistic Portfolio / Pop-Art Fusion</span>
+            <h1>Juan Manuel<br>Taborda</h1>
+            <a href="#work" class="btn-legacy">Explore My Work</a>
+        </div>
+    </header>
+
+    <section id="about" class="reveal">
+        <h2 class="section-title">The Concept & Background</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="personal-badge">
+                    <p><strong>Name:</strong> Juan Manuel Taborda Velásquez</p>
+                    <p><strong>Grade:</strong> 9th Grade</p>
+                    <p><strong>Age:</strong> 15 Years Old</p>
+                </div>
+                <p class="bio-text">My artistic research focuses on exploring visual plasticity and relief through a meticulous methodology, where analytical engineering principles converge with the boldness of contemporary design.</p>
+                <p class="bio-text">Furthermore, this proposal merges the dynamic, high-contrast nature of pop art with the intricate patterns of abstract pointillism. By applying extreme color saturation and a deliberate "horror vacui" technique, I transform ordinary objects and natural landscapes into tangible, physical structures that pulsate with calculating rhythm and strict geometric harmony.</p>
+            </div>
+            <div class="frame-premium">
+                <img src="JUAN.jpeg" alt="Portrait of Juan Manuel Taborda">
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="reveal">
+        <h2 class="section-title">Artistic Media Gallery</h2>
+
+        <div class="work-item reveal">
+            <div class="work-meta britto-stripes">
+                <h4 style="background: white; padding: 5px 10px; border: 3px solid black;">Artistic Process Breakdown (Video)</h4>
+                <span>Cinematic Performance</span>
+            </div>
+            <div class="video-wrapper">
+                <video controls preload="metadata" poster="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1200">
+                    <source src="tu-video-local.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="work-item reveal">
+            <div class="work-meta">
+                <h4>Pop Art Sculpting Studies</h4>
+                <span>Plasticine Relief</span>
+            </div>
+            <div class="img-wrapper">
+                <img src="Hamburguesa.jpeg" alt="Burger Pop Art Artwork">
+            </div>
+        </div>
+
+        <div class="work-item reveal">
+            <div class="work-meta">
+                <h4>Galactic Nights & Textures</h4>
+                <span>Pointillism Painting</span>
+            </div>
+            <div class="img-wrapper">
+                <img src="ARBOL.jpeg" alt="Tree Pointillism Artwork">
+            </div>
+        </div>
+
+        <div class="work-item reveal">
+            <div class="work-meta">
+                <h4>Hybrid Nature Blueprint</h4>
+                <span>Dynamic Pop Art</span>
+            </div>
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?auto=format&fit=crop&q=80&w=1200" alt="Dynamic Nature Geometry">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 JUAN MANUEL TABORDA | VISUAL ARTS PORTFOLIO | ALL RIGHTS RESERVED
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            if (window.location.hash) {
+                history.replaceState("", document.title, window.location.pathname);
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            window.scrollY > 60 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+        });
+
+        const reveal = () => {
+            document.querySelectorAll(".reveal").forEach(el => {
+                let windowHeight = window.innerHeight;
+                let elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 120) el.classList.add("active");
+            });
+        };
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
